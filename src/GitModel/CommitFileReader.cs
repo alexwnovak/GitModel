@@ -21,7 +21,7 @@ namespace GitModel
          lines.Where( l => !l.StartsWith( "#" ) );
 
       private IEnumerable<string> GetCommitFileLines( string filePath ) =>
-         OmitComments( _fileSystem.ReadAllLines() );
+         OmitComments( _fileSystem.ReadAllLines( filePath ) );
 
       public CommitDocument FromFile( string filePath )
       {

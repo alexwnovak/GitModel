@@ -4,6 +4,6 @@
    {
       bool FileExists( string filePath );
 
-      string[] ReadAllLines();
+      string[] ReadAllLines( string filePath );
    }
 }

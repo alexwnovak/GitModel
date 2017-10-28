@@ -54,7 +54,7 @@ namespace GitModel.UnitTests
 
          var fileSystemMock = new Mock<IFileSystem>();
          fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( true );
-         fileSystemMock.Setup( fs => fs.ReadAllLines() ).Returns( new[] { subject } );
+         fileSystemMock.Setup( fs => fs.ReadAllLines( filePath ) ).Returns( new[] { subject } );
 
          // Act
 
@@ -83,7 +83,7 @@ namespace GitModel.UnitTests
 
          var fileSystemMock = new Mock<IFileSystem>();
          fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( true );
-         fileSystemMock.Setup( fs => fs.ReadAllLines() ).Returns( lines );
+         fileSystemMock.Setup( fs => fs.ReadAllLines( filePath ) ).Returns( lines );
 
          // Act
 
@@ -112,7 +112,7 @@ namespace GitModel.UnitTests
 
          var fileSystemMock = new Mock<IFileSystem>();
          fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( true );
-         fileSystemMock.Setup( fs => fs.ReadAllLines() ).Returns( lines );
+         fileSystemMock.Setup( fs => fs.ReadAllLines( filePath ) ).Returns( lines );
 
          // Act
 
@@ -142,7 +142,7 @@ namespace GitModel.UnitTests
 
          var fileSystemMock = new Mock<IFileSystem>();
          fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( true );
-         fileSystemMock.Setup( fs => fs.ReadAllLines() ).Returns( lines );
+         fileSystemMock.Setup( fs => fs.ReadAllLines( filePath ) ).Returns( lines );
 
          // Act
 
@@ -173,7 +173,7 @@ namespace GitModel.UnitTests
 
          var fileSystemMock = new Mock<IFileSystem>();
          fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( true );
-         fileSystemMock.Setup( fs => fs.ReadAllLines() ).Returns( lines );
+         fileSystemMock.Setup( fs => fs.ReadAllLines( filePath ) ).Returns( lines );
 
          // Act
 
@@ -205,7 +205,7 @@ namespace GitModel.UnitTests
 
          var fileSystemMock = new Mock<IFileSystem>();
          fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( true );
-         fileSystemMock.Setup( fs => fs.ReadAllLines() ).Returns( lines );
+         fileSystemMock.Setup( fs => fs.ReadAllLines( filePath ) ).Returns( lines );
 
          // Act
 
@@ -240,7 +240,7 @@ namespace GitModel.UnitTests
 
          var fileSystemMock = new Mock<IFileSystem>();
          fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( true );
-         fileSystemMock.Setup( fs => fs.ReadAllLines() ).Returns( lines );
+         fileSystemMock.Setup( fs => fs.ReadAllLines( filePath ) ).Returns( lines );
 
          // Act
 
@@ -276,7 +276,7 @@ namespace GitModel.UnitTests
 
          var fileSystemMock = new Mock<IFileSystem>();
          fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( true );
-         fileSystemMock.Setup( fs => fs.ReadAllLines() ).Returns( lines );
+         fileSystemMock.Setup( fs => fs.ReadAllLines( filePath ) ).Returns( lines );
 
          // Act
 
