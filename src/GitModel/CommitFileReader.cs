@@ -63,6 +63,10 @@ namespace GitModel
                   hasStartedBody = true;
                   body.Add( line );
                }
+               else if ( hasStartedBody )
+               {
+                  body.Add( line );
+               }
             }
          }
 
