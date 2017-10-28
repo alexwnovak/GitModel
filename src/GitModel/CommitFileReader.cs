@@ -15,7 +15,7 @@ namespace GitModel
       }
 
       private static TextReader GetTextReader( IEnumerable<string> lines ) => 
-         new StringReader( string.Join( "\r\n", lines ) );
+         new StringReader( string.Join( Environment.NewLine, lines ) );
 
       private static IEnumerable<string> OmitComments( IEnumerable<string> lines ) =>
          lines.Where( l => !l.StartsWith( "#" ) );
