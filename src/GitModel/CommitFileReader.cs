@@ -12,7 +12,7 @@ namespace GitModel
          _fileSystem = fileSystem;
       }
 
-      public void FromFile( string filePath )
+      public CommitDocument FromFile( string filePath )
       {
          if ( string.IsNullOrEmpty( filePath ) )
          {
@@ -24,7 +24,12 @@ namespace GitModel
             throw new FileNotFoundException( $"Couldn't find file: {filePath}" );
          }
 
-         throw new NotImplementedException();
+         var allLines = _fileSystem.ReadAllLines();
+
+         return new CommitDocument
+         {
+            Subject = allLines[0]
+         };
       }
    }
 }

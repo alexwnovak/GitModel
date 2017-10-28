@@ -42,5 +42,28 @@ namespace GitModel.UnitTests
 
          fromFile.ShouldThrow<FileNotFoundException>();
       }
+
+      [Fact]
+      public void FromFile_CommitFileHasSubject_PopulatesSubject()
+      {
+         const string filePath = "DoesntMatter";
+         const string subject = "DoesntMatter";
+
+         // Arrange
+
+         var fileSystemMock = new Mock<IFileSystem>();
+         fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( true );
+         fileSystemMock.Setup( fs => fs.ReadAllLines() ).Returns( new[] { subject } );
+
+         // Act
+
+         var commitFileReader = new CommitFileReader( fileSystemMock.Object );
+
+         var commitDocument = commitFileReader.FromFile( filePath );
+
+         // Assert
+
+         commitDocument.Subject.Should().Be( subject );
+      }
    }
 }
