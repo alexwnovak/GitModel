@@ -3,6 +3,7 @@ using System.IO;
 using Xunit;
 using FluentAssertions;
 using Moq;
+using GitModel.UnitTests.Helpers;
 
 namespace GitModel.UnitTests
 {
@@ -122,6 +123,67 @@ namespace GitModel.UnitTests
          // Assert
 
          commitDocument.Subject.Should().Be( subject );
+      }
+
+      [Fact]
+      public void FromFile_CommitFileHasOneLineBodyAfterOneBlankLine_PopulatesBody()
+      {
+         const string filePath = "DoesntMatter";
+         const string body = "Body";
+
+         var lines = new[]
+         {
+            "Subject",
+            "",
+            body
+         };
+
+         // Arrange
+
+         var fileSystemMock = new Mock<IFileSystem>();
+         fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( true );
+         fileSystemMock.Setup( fs => fs.ReadAllLines() ).Returns( lines );
+
+         // Act
+
+         var commitFileReader = new CommitFileReader( fileSystemMock.Object );
+
+         var commitDocument = commitFileReader.FromFile( filePath );
+
+         // Assert
+
+         commitDocument.Body.Should().BeEquivalentTo( body.AsArray() );
+      }
+
+      [Fact]
+      public void FromFile_CommitFileHasOneLineBodyAfterTwoBlankLines_PopulatesBody()
+      {
+         const string filePath = "DoesntMatter";
+         const string body = "Body";
+
+         var lines = new[]
+         {
+            "Subject",
+            "",
+            "",
+            body
+         };
+
+         // Arrange
+
+         var fileSystemMock = new Mock<IFileSystem>();
+         fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( true );
+         fileSystemMock.Setup( fs => fs.ReadAllLines() ).Returns( lines );
+
+         // Act
+
+         var commitFileReader = new CommitFileReader( fileSystemMock.Object );
+
+         var commitDocument = commitFileReader.FromFile( filePath );
+
+         // Assert
+
+         commitDocument.Body.Should().BeEquivalentTo( body.AsArray() );
       }
    }
 }
