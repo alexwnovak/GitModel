@@ -65,5 +65,34 @@ namespace GitModel.UnitTests
 
          commitDocument.Subject.Should().Be( subject );
       }
+
+      [Fact]
+      public void FromFile_CommitFileHasCommentsBeforeSubject_PopulatesSubject()
+      {
+         const string filePath = "DoesntMatter";
+         const string subject = "DoesntMatter";
+
+         var lines = new[]
+         {
+            "# A comment",
+            subject
+         };
+
+         // Arrange
+
+         var fileSystemMock = new Mock<IFileSystem>();
+         fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( true );
+         fileSystemMock.Setup( fs => fs.ReadAllLines() ).Returns( lines );
+
+         // Act
+
+         var commitFileReader = new CommitFileReader( fileSystemMock.Object );
+
+         var commitDocument = commitFileReader.FromFile( filePath );
+
+         // Assert
+
+         commitDocument.Subject.Should().Be( subject );
+      }
    }
 }

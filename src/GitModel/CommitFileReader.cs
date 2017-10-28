@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace GitModel
 {
@@ -24,7 +25,7 @@ namespace GitModel
             throw new FileNotFoundException( $"Couldn't find file: {filePath}" );
          }
 
-         var allLines = _fileSystem.ReadAllLines();
+         var allLines = _fileSystem.ReadAllLines().Where( l => !l.StartsWith( "#" ) ).ToArray();
 
          return new CommitDocument
          {
