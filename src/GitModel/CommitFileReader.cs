@@ -17,6 +17,12 @@ namespace GitModel
       private static TextReader GetTextReader( IEnumerable<string> lines ) => 
          new StringReader( string.Join( "\r\n", lines ) );
 
+      private static IEnumerable<string> OmitComments( IEnumerable<string> lines ) =>
+         lines.Where( l => !l.StartsWith( "#" ) );
+
+      private IEnumerable<string> GetCommitFileLines( string filePath ) =>
+         OmitComments( _fileSystem.ReadAllLines() );
+
       public CommitDocument FromFile( string filePath )
       {
          if ( string.IsNullOrEmpty( filePath ) )
@@ -29,7 +35,7 @@ namespace GitModel
             throw new FileNotFoundException( $"Couldn't find file: {filePath}" );
          }
 
-         var allLines = _fileSystem.ReadAllLines().Where( l => !l.StartsWith( "#" ) );
+         var lines = GetCommitFileLines( filePath );
 
          string subject = string.Empty;
          var body = new List<string>();
@@ -37,7 +43,7 @@ namespace GitModel
          bool hasFoundSubject = false;
          bool hasStartedBody = false;
 
-         using ( var textReader = GetTextReader( allLines ) )
+         using ( var textReader = GetTextReader( lines ) )
          {
             while ( textReader.Peek() > 0 )
             {
