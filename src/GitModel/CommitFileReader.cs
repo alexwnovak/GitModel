@@ -27,9 +27,11 @@ namespace GitModel
 
          var allLines = _fileSystem.ReadAllLines().Where( l => !l.StartsWith( "#" ) ).ToArray();
 
+         string subject = allLines.First( l => !string.IsNullOrEmpty( l ) );
+
          return new CommitDocument
          {
-            Subject = allLines[0]
+            Subject = subject
          };
       }
    }
