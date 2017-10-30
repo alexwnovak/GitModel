@@ -9,6 +9,10 @@ namespace GitModel
    {
       private readonly IFileSystem _fileSystem;
 
+      public CommitFileReader() : this( new FileSystem() )
+      {
+      }
+
       public CommitFileReader( IFileSystem fileSystem )
       {
          _fileSystem = fileSystem;
