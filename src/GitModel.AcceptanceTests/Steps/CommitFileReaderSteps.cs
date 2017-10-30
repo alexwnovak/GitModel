@@ -1,5 +1,4 @@
-﻿using System.IO;
-using FluentAssertions;
+﻿using FluentAssertions;
 using TechTalk.SpecFlow;
 using GitModel.AcceptanceTests.Helpers;
 
@@ -16,10 +15,7 @@ namespace GitModel.AcceptanceTests.Steps
       {
          if ( ScenarioContext.Current.TryGetValue( _commitFilePathKey, out string commitFilePath ) )
          {
-            if ( File.Exists( commitFilePath ) )
-            {
-               File.Delete( commitFilePath );
-            }
+            FileHelper.DeleteFile( commitFilePath );
          }
       }
 
