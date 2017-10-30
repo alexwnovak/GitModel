@@ -13,7 +13,7 @@ namespace GitModel
       {
       }
 
-      public CommitFileReader( IFileSystem fileSystem )
+      internal CommitFileReader( IFileSystem fileSystem )
       {
          _fileSystem = fileSystem;
       }

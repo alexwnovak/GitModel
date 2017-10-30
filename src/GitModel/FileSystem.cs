@@ -2,7 +2,7 @@
 
 namespace GitModel
 {
-   public class FileSystem : IFileSystem
+   internal class FileSystem : IFileSystem
    {
       public bool FileExists( string filePath ) => File.Exists( filePath );
 

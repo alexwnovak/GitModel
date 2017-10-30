@@ -1,6 +1,6 @@
 ﻿namespace GitModel
 {
-   public interface IFileSystem
+   internal interface IFileSystem
    {
       bool FileExists( string filePath );
 
