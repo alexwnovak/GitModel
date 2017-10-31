@@ -5,22 +5,29 @@ namespace GitModel.AcceptanceTests.Steps
    [Binding]
    public class CommitFileWriterSteps
    {
+      private readonly ScenarioContext _scenarioContext;
+
+      public CommitFileWriterSteps( ScenarioContext scenarioContext )
+      {
+         _scenarioContext = scenarioContext;
+      }
+
       [Given( @"the commit document subject is ""(.*)""" )]
       public void GivenTheCommitDocumentSubjectIs( string subject )
       {
-         ScenarioContext.Current.Pending();
+         _scenarioContext.Pending();
       }
 
       [When( @"I write commit file" )]
       public void WhenIWriteCommitFile()
       {
-         ScenarioContext.Current.Pending();
+         _scenarioContext.Pending();
       }
 
       [Then( @"the commit file subject is ""(.*)""" )]
       public void ThenTheCommitFileSubjectIs( string expectedSubject )
       {
-         ScenarioContext.Current.Pending();
+         _scenarioContext.Pending();
       }
    }
 }
