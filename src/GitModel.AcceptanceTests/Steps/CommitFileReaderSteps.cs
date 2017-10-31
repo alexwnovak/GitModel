@@ -1,5 +1,5 @@
-﻿using FluentAssertions;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
+using FluentAssertions;
 using GitModel.AcceptanceTests.Helpers;
 
 namespace GitModel.AcceptanceTests.Steps
@@ -9,6 +9,11 @@ namespace GitModel.AcceptanceTests.Steps
    {
       private const string _commitFilePathKey = "CommitFilePath";
       private const string _commitDocumentKey = "CommitDocument";
+      private const string _commitFileHelperKey = "CommitFileHelper";
+
+      [StepArgumentTransformation]
+      public string[] TransformToListOfString( string commaSeparatedList ) =>
+         commaSeparatedList.Split( ',' );
 
       [AfterScenario]
       public void ScenarioCleanup()
@@ -19,28 +24,31 @@ namespace GitModel.AcceptanceTests.Steps
          }
       }
 
-      [Given( @"the commit file has subject ""(.*)""" )]
+      [Given( @"the commit subject is ""(.*)""" )]
       public void GivenTheCommitFileHasSubject( string subject )
       {
-         string commitFilePath = FileHelper.WriteTempFile(
-            subject,
-            "",
-            "# Please enter the commit message for your changes. Lines starting",
-            "# with '#' will be ignored, and an empty message aborts the commit.",
-            "#",
-            "# On branch master",
-            "# Changes to be committed:",
-            "# deleted:    SomeFile",
-            "#",
-            "# Changes not staged for commit:",
-            "# modified:   src/GitModel.AcceptanceTests/GitModel.AcceptanceTests.csproj",
-            "#",
-            "# Untracked files:",
-            "# src/.vs/",
-            "# src/GitModel.AcceptanceTests/Helpers/",
-            "# src/GitModel/FileSystem.cs",
-            "#"
-         );
+         var commitFileHelper = new CommitFileHelper
+         {
+            Subject = subject
+         };
+
+         ScenarioContext.Current[_commitFileHelperKey] = commitFileHelper;
+      }
+
+      [Given( @"the commit body has the lines ""(.*)""" )]
+      public void GivenTheCommitFileHasBody( string[] body )
+      {
+         var commitFileHelper = (CommitFileHelper) ScenarioContext.Current[_commitFileHelperKey];
+
+         commitFileHelper.Body = body;
+      }
+
+      [Given( @"the commit file exists" )]
+      public void TheCommitFileExists()
+      {
+         var commitFileHelper = (CommitFileHelper) ScenarioContext.Current[_commitFileHelperKey];
+
+         string commitFilePath = commitFileHelper.Save();
 
          ScenarioContext.Current[_commitFilePathKey] = commitFilePath;
       }
@@ -62,6 +70,14 @@ namespace GitModel.AcceptanceTests.Steps
          var commitDocument = (CommitDocument) ScenarioContext.Current[_commitDocumentKey];
 
          commitDocument.Subject.Should().Be( subject );
+      }
+
+      [Then( @"the body should be the lines ""(.*)""" )]
+      public void ThenTheBodyShouldBeTheLines( string[] expectedBodyLines )
+      {
+         var commitDocument = (CommitDocument) ScenarioContext.Current[_commitDocumentKey];
+
+         commitDocument.Body.Should().BeEquivalentTo( expectedBodyLines );
       }
    }
 }

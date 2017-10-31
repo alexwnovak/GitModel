@@ -83,11 +83,37 @@ namespace GitModel.AcceptanceTests
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
-   testRunner.Given("the commit file has subject \"This is the subject\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+   testRunner.Given("the commit subject is \"This is the subject\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-   testRunner.When("I read the commit file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+   testRunner.And("the commit file exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
+   testRunner.When("I read the commit file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
    testRunner.Then("the subject should be \"This is the subject\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute(DisplayName="Can read the body from the commit file")]
+        [Xunit.TraitAttribute("FeatureTitle", "CommitFileReader")]
+        [Xunit.TraitAttribute("Description", "Can read the body from the commit file")]
+        [Xunit.TraitAttribute("Category", "Acceptance")]
+        public virtual void CanReadTheBodyFromTheCommitFile()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Can read the body from the commit file", new string[] {
+                        "Acceptance"});
+#line 14
+this.ScenarioSetup(scenarioInfo);
+#line 15
+   testRunner.Given("the commit subject is \"This is the subject\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 16
+   testRunner.And("the commit body has the lines \"Line one,Line two,Line three\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+   testRunner.And("the commit file exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 18
+   testRunner.When("I read the commit file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 19
+   testRunner.Then("the body should be the lines \"Line one,Line two,Line three\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

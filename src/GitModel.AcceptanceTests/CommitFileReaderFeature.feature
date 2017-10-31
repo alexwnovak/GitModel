@@ -5,6 +5,15 @@
 
 @Acceptance
 Scenario: Can read subject from commit file
-   Given the commit file has subject "This is the subject"
+   Given the commit subject is "This is the subject"
+   And the commit file exists
    When I read the commit file
    Then the subject should be "This is the subject"
+
+@Acceptance
+Scenario: Can read the body from the commit file
+   Given the commit subject is "This is the subject"
+   And the commit body has the lines "Line one,Line two,Line three"
+   And the commit file exists
+   When I read the commit file
+   Then the body should be the lines "Line one,Line two,Line three"
