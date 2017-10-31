@@ -72,7 +72,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CommitFileReaderFeature.feature</DependentUpon>
     </Compile>
-    <Compile Include="CommitFileReaderScenarios.cs" />
     <Compile Include="Helpers\CommitFileHelper.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
