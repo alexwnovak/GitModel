@@ -7,76 +7,69 @@ namespace GitModel.AcceptanceTests.Steps
    [Binding]
    public class CommitFileReaderSteps
    {
-      private readonly ScenarioContext _scenarioContext;
+      //[AfterScenario]
+      //public void ScenarioCleanup()
+      //{
+      //   if ( _scenarioContext.TryGetValue( Keys.CommitFilePathKey, out string commitFilePath ) )
+      //   {
+      //      FileHelper.DeleteFile( commitFilePath );
+      //   }
+      //}
 
-      public CommitFileReaderSteps( ScenarioContext scenarioContext )
-      {
-         _scenarioContext = scenarioContext;
-      }
+      //[Given( @"the commit subject is ""(.*)""" )]
+      //public void GivenTheCommitFileHasSubject( string subject )
+      //{
+      //   var commitFileHelper = new CommitFileHelper
+      //   {
+      //      Subject = subject
+      //   };
 
-      [AfterScenario]
-      public void ScenarioCleanup()
-      {
-         if ( _scenarioContext.TryGetValue( Keys.CommitFilePathKey, out string commitFilePath ) )
-         {
-            FileHelper.DeleteFile( commitFilePath );
-         }
-      }
+      //   _scenarioContext[Keys.CommitFileHelperKey] = commitFileHelper;
+      //}
 
-      [Given( @"the commit subject is ""(.*)""" )]
-      public void GivenTheCommitFileHasSubject( string subject )
-      {
-         var commitFileHelper = new CommitFileHelper
-         {
-            Subject = subject
-         };
+      //[Given( @"the commit body has the lines ""(.*)""" )]
+      //public void GivenTheCommitFileHasBody( string[] body )
+      //{
+      //   var commitFileHelper = (CommitFileHelper) _scenarioContext[Keys.CommitFileHelperKey];
 
-         _scenarioContext[Keys.CommitFileHelperKey] = commitFileHelper;
-      }
+      //   commitFileHelper.Body = body;
+      //}
 
-      [Given( @"the commit body has the lines ""(.*)""" )]
-      public void GivenTheCommitFileHasBody( string[] body )
-      {
-         var commitFileHelper = (CommitFileHelper) _scenarioContext[Keys.CommitFileHelperKey];
+      //[Given( @"the commit file exists" )]
+      //public void TheCommitFileExists()
+      //{
+      //   var commitFileHelper = (CommitFileHelper) _scenarioContext[Keys.CommitFileHelperKey];
 
-         commitFileHelper.Body = body;
-      }
+      //   string commitFilePath = commitFileHelper.Save();
 
-      [Given( @"the commit file exists" )]
-      public void TheCommitFileExists()
-      {
-         var commitFileHelper = (CommitFileHelper) _scenarioContext[Keys.CommitFileHelperKey];
+      //   _scenarioContext[Keys.CommitFilePathKey] = commitFilePath;
+      //}
 
-         string commitFilePath = commitFileHelper.Save();
+      ////[When( @"I read the commit file" )]
+      ////public void WhenIReadTheCommitFile()
+      ////{
+      ////   string commitFilePath = (string) _scenarioContext[Keys.CommitFilePathKey];
 
-         _scenarioContext[Keys.CommitFilePathKey] = commitFilePath;
-      }
+      ////   var commitFileReader = new CommitFileReader();
+      ////   var commitDocument = commitFileReader.FromFile( commitFilePath );
 
-      [When( @"I read the commit file" )]
-      public void WhenIReadTheCommitFile()
-      {
-         string commitFilePath = (string) _scenarioContext[Keys.CommitFilePathKey];
+      ////   _scenarioContext[Keys.CommitDocumentKey] = commitDocument;
+      ////}
 
-         var commitFileReader = new CommitFileReader();
-         var commitDocument = commitFileReader.FromFile( commitFilePath );
+      //[Then( @"the subject should be ""(.*)""" )]
+      //public void ThenTheSubjectShouldBe( string subject )
+      //{
+      //   var commitDocument = (CommitDocument) _scenarioContext[Keys.CommitDocumentKey];
 
-         _scenarioContext[Keys.CommitDocumentKey] = commitDocument;
-      }
+      //   commitDocument.Subject.Should().Be( subject );
+      //}
 
-      [Then( @"the subject should be ""(.*)""" )]
-      public void ThenTheSubjectShouldBe( string subject )
-      {
-         var commitDocument = (CommitDocument) _scenarioContext[Keys.CommitDocumentKey];
+      //[Then( @"the body should be the lines ""(.*)""" )]
+      //public void ThenTheBodyShouldBeTheLines( string[] expectedBodyLines )
+      //{
+      //   var commitDocument = (CommitDocument) _scenarioContext[Keys.CommitDocumentKey];
 
-         commitDocument.Subject.Should().Be( subject );
-      }
-
-      [Then( @"the body should be the lines ""(.*)""" )]
-      public void ThenTheBodyShouldBeTheLines( string[] expectedBodyLines )
-      {
-         var commitDocument = (CommitDocument) _scenarioContext[Keys.CommitDocumentKey];
-
-         commitDocument.Body.Should().BeEquivalentTo( expectedBodyLines );
-      }
+      //   commitDocument.Body.Should().BeEquivalentTo( expectedBodyLines );
+      //}
    }
 }

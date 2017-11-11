@@ -3,7 +3,7 @@ using GitModel;
 
 namespace GitModel.AcceptanceTests.ModelObjects
 {
-   internal class CommitDocumentObject
+   public class CommitDocumentObject
    {
       private readonly string _tempFileName = Path.GetTempFileName();
       private CommitDocument _commitDocument = new CommitDocument();
