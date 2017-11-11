@@ -2,12 +2,14 @@
 using TechTalk.SpecFlow;
 using FluentAssertions;
 using GitModel;
+using GitModel.AcceptanceTests.ModelObjects;
 
 namespace GitModel.AcceptanceTests.Steps
 {
    [Binding]
    public class CommitFileWriterSteps
    {
+      private readonly CommitDocumentObject _commitDocumentObject = new CommitDocumentObject();
       private readonly ScenarioContext _scenarioContext;
 
       public CommitFileWriterSteps( ScenarioContext scenarioContext )
@@ -18,36 +20,32 @@ namespace GitModel.AcceptanceTests.Steps
       [Given( @"the commit document subject is ""(.*)""" )]
       public void GivenTheCommitDocumentSubjectIs( string subject )
       {
-         var commitDocument = new CommitDocument
-         {
-            Subject = subject
-         };
-
-         _scenarioContext[Keys.CommitDocumentKey] = commitDocument;
+         _commitDocumentObject.Subject = subject;
       }
+
+      [Given( @"I write the commit file" )]
+      public void GivenIWriteTheCommitFile() => WhenIWriteCommitFile();
 
       [When( @"I write commit file" )]
       public void WhenIWriteCommitFile()
       {
-         string tempFileName = Path.GetTempFileName();
-
-         _scenarioContext[Keys.CommitFilePathKey] = tempFileName;
-         var commitDocument = (CommitDocument) _scenarioContext[Keys.CommitDocumentKey];
-
-         var commitFileWriter = new CommitFileWriter();
-
-         commitFileWriter.ToFile( tempFileName, commitDocument );
+         _commitDocumentObject.Save();
       }
 
       [Then( @"the commit file subject is ""(.*)""" )]
       public void ThenTheCommitFileSubjectIs( string expectedSubject )
       {
+         _commitDocumentObject.Load();
+
+         _commitDocumentObject.Subject.Should().Be( expectedSubject );
+      }
+
+      [Then( @"the commit file subject body has the lines ""(.*)""" )]
+      public void ThenTheCommitFileSubjectBodyHasTheLines( string[] bodyLines )
+      {
          string tempFileName = (string) _scenarioContext[Keys.CommitFilePathKey];
 
-         var commitFileReader = new CommitFileReader();
-         var actualCommitDocument = commitFileReader.FromFile( tempFileName );
-
-         actualCommitDocument.Subject.Should().Be( expectedSubject );
+         var allLines = File.ReadAllLines( tempFileName );
       }
    }
 }

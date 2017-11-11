@@ -92,6 +92,30 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
+        [Xunit.FactAttribute(DisplayName="Can write the body to the commit file")]
+        [Xunit.TraitAttribute("FeatureTitle", "CommitFileWriter")]
+        [Xunit.TraitAttribute("Description", "Can write the body to the commit file")]
+        [Xunit.TraitAttribute("Category", "Acceptance")]
+        public virtual void CanWriteTheBodyToTheCommitFile()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Can write the body to the commit file", new string[] {
+                        "Acceptance"});
+#line 13
+this.ScenarioSetup(scenarioInfo);
+#line 14
+   testRunner.Given("the commit subject is \"This is the subject\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 15
+   testRunner.And("the commit body has the lines \"Line one,Line two,Line three\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+   testRunner.And("I write the commit file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+   testRunner.When("I read the commit file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 18
+   testRunner.Then("the commit file subject body has the lines \"Line one,Line two,Line three\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable
