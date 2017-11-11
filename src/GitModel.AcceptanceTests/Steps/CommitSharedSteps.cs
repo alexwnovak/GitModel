@@ -43,6 +43,7 @@ namespace GitModel.AcceptanceTests.Steps
       }
 
       [Given( @"I write the commit file" )]
+      [Given( @"the commit file exists" )]
       [When( @"I write the commit file" )]
       public void WhenIWriteCommitFile() => _commitDocumentObject.Save();
 
