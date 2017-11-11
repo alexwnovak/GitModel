@@ -20,6 +20,12 @@ namespace GitModel.AcceptanceTests.Steps
          _commitDocumentObject.Subject = subject;
       }
 
+      [Given( @"the commit body has the lines ""(.*)""" )]
+      public void GivenTheCommitBodyHasTheLines( string[] body )
+      {
+         _commitDocumentObject.Body = body;
+      }
+
       [Then( @"the commit file subject is ""(.*)""" )]
       public void ThenTheCommitFileSubjectIs( string expectedSubject )
       {
@@ -35,5 +41,12 @@ namespace GitModel.AcceptanceTests.Steps
 
          _commitDocumentObject.Body.Should().Contain( bodyLines );
       }
+
+      [Given( @"I write the commit file" )]
+      [When( @"I write the commit file" )]
+      public void WhenIWriteCommitFile() => _commitDocumentObject.Save();
+
+      [When( @"I read the commit file" )]
+      public void WhenIReadTheCommitFile() => _commitDocumentObject.Load();
    }
 }

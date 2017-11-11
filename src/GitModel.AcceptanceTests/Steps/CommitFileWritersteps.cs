@@ -15,8 +15,5 @@ namespace GitModel.AcceptanceTests.Steps
       {
          _commitDocumentObject = commitDocumentObject;
       }
-
-      [When( @"I write the commit file" )]
-      public void WhenIWriteCommitFile() => _commitDocumentObject.Save();
    }
 }
