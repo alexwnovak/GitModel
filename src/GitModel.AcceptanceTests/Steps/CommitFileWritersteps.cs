@@ -30,6 +30,8 @@ namespace GitModel.AcceptanceTests.Steps
       public void WhenIWriteCommitFile()
       {
          string tempFileName = Path.GetTempFileName();
+
+         _scenarioContext[Keys.CommitFilePathKey] = tempFileName;
          var commitDocument = (CommitDocument) _scenarioContext[Keys.CommitDocumentKey];
 
          var commitFileWriter = new CommitFileWriter();
@@ -40,10 +42,10 @@ namespace GitModel.AcceptanceTests.Steps
       [Then( @"the commit file subject is ""(.*)""" )]
       public void ThenTheCommitFileSubjectIs( string expectedSubject )
       {
-         var commitDocument = (CommitDocument) _scenarioContext[Keys.CommitDocumentKey];
+         string tempFileName = (string) _scenarioContext[Keys.CommitFilePathKey];
 
          var commitFileReader = new CommitFileReader();
-         var actualCommitDocument = commitFileReader.FromFile( commitDocument.FilePath );
+         var actualCommitDocument = commitFileReader.FromFile( tempFileName );
 
          actualCommitDocument.Subject.Should().Be( expectedSubject );
       }
