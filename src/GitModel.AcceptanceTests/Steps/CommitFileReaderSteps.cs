@@ -14,10 +14,6 @@ namespace GitModel.AcceptanceTests.Steps
          _scenarioContext = scenarioContext;
       }
 
-      [StepArgumentTransformation]
-      public string[] TransformToListOfString( string commaSeparatedList ) =>
-         commaSeparatedList.Split( ',' );
-
       [AfterScenario]
       public void ScenarioCleanup()
       {
