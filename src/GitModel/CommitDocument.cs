@@ -2,6 +2,12 @@
 {
    public class CommitDocument
    {
+      public string FilePath
+      {
+         get;
+         set;
+      }
+
       public string Subject
       {
          get;
