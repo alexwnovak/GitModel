@@ -61,7 +61,19 @@ namespace GitModel
             lines.AddRange( document.Body );
          }
 
-         _fileSystem.WriteAllLines( filePath, lines );
+         WriteAllLines( filePath, lines );
+      }
+
+      private void WriteAllLines( string filePath, IEnumerable<string> lines )
+      {
+         try
+         {
+            _fileSystem.WriteAllLines( filePath, lines );
+         }
+         catch ( Exception ex )
+         {
+            throw new GitModelException( $"Unable to write commit file to: {filePath}. Refer to the inner exception for details.", ex );
+         }
       }
    }
 }
