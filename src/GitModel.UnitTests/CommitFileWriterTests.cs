@@ -83,5 +83,27 @@ namespace GitModel.UnitTests
             actualContents.Should().Contain( body );
          }
       }
+
+      [Fact]
+      public void ToFile_DiskAccessFails_ThrowsGitModelExceptionWithCorrectInnerException()
+      {
+         var innerException = new UnauthorizedAccessException();
+
+         var fileSystemMock = new Mock<IFileSystem>();
+         fileSystemMock.Setup( fs => fs.WriteAllLines( It.IsAny<string>(), It.IsAny<IEnumerable<string>>() ) )
+            .Throws( innerException );
+
+         var commitDocument = new CommitDocument
+         {
+            Subject = "Valid Subject",
+            Body = new[] { "Valid Body" }
+         };
+
+         var commitFileWriter = new CommitFileWriter( fileSystemMock.Object );
+
+         Action toFile = () => commitFileWriter.ToFile( "Valid File Path", commitDocument );
+
+         toFile.ShouldThrow<GitModelException>().Which.InnerException.Should().Be( innerException );
+      }
    }
 }

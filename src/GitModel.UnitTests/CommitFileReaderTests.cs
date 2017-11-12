@@ -34,21 +34,6 @@ namespace GitModel.UnitTests
       }
 
       [Fact]
-      public void FromFile_FilePathDoesNotExist_ThrowsFileNotFoundException()
-      {
-         const string filePath = "DoesntMatter";
-
-         var fileSystemMock = new Mock<IFileSystem>();
-         fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( false );
-
-         var commitFileReader = new CommitFileReader( fileSystemMock.Object );
-
-         Action fromFile = () => commitFileReader.FromFile( filePath );
-
-         fromFile.ShouldThrow<FileNotFoundException>();
-      }
-
-      [Fact]
       public void FromFile_CommitFileHasSubject_PopulatesSubject()
       {
          const string filePath = "DoesntMatter";
@@ -225,6 +210,39 @@ namespace GitModel.UnitTests
       }
 
       [Fact]
+      public void FromFile_CommitFileHasTwoLineBodyWithNoLineBreaks_PopulatesBody()
+      {
+         const string filePath = "DoesntMatter";
+         const string bodyL1 = "BodyLine1";
+         const string bodyL2 = "BodyLine2";
+
+         var lines = new[]
+         {
+            "Subject",
+            bodyL1,
+            bodyL2
+         };
+
+         // Arrange
+
+         var fileSystemMock = new Mock<IFileSystem>();
+         fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( true );
+         fileSystemMock.Setup( fs => fs.ReadAllLines( filePath ) ).Returns( lines );
+
+         // Act
+
+         var commitFileReader = new CommitFileReader( fileSystemMock.Object );
+
+         var commitDocument = commitFileReader.FromFile( filePath );
+
+         // Assert
+
+         var expectedLines = ArrayHelper.Create( bodyL1, bodyL2 );
+
+         commitDocument.Body.Should().BeEquivalentTo( expectedLines );
+      }
+
+      [Fact]
       public void FromFile_CommitFileHasTwoLineBodySeparatedByBlankLine_PopulatesBody()
       {
          const string filePath = "DoesntMatter";
@@ -293,6 +311,29 @@ namespace GitModel.UnitTests
          var expectedLines = ArrayHelper.Create( bodyL1, "", bodyL2 );
 
          commitDocument.Body.Should().BeEquivalentTo( expectedLines );
+      }
+
+      [Fact]
+      public void FromFile_FilesDoesNotExist_ThrowsGitModelExceptionWithCorrectInnerException()
+      {
+         const string filePath = "COMMIT_EDITMSG";
+         var innerException = new FileNotFoundException();
+
+         // Arrange
+
+         var fileSystemMock = new Mock<IFileSystem>();
+         fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( true );
+         fileSystemMock.Setup( fs => fs.ReadAllLines( filePath ) ).Throws( innerException );
+
+         // Act
+
+         var commitFileReader = new CommitFileReader( fileSystemMock.Object );
+
+         Action fromFile = () => commitFileReader.FromFile( filePath );
+
+         // Assert
+
+         fromFile.ShouldThrow<GitModelException>().Which.InnerException.Should().Be( innerException );
       }
    }
 }
