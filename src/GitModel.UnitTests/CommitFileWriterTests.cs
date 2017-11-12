@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using FluentAssertions;
 using Xunit;
 using Moq;
@@ -19,6 +20,16 @@ namespace GitModel.UnitTests
          var commitFileWriter = new CommitFileWriter( Mock.Of<IFileSystem>() );
 
          Action fromFile = () => commitFileWriter.ToFile( filePath, new CommitDocument() );
+
+         fromFile.ShouldThrow<ArgumentException>();
+      }
+
+      [Fact]
+      public void ToFile_CommitDocumentIsNull_ThrowsArgumentException()
+      {
+         var commitFileWriter = new CommitFileWriter( Mock.Of<IFileSystem>() );
+
+         Action fromFile = () => commitFileWriter.ToFile( "NotNullString", null );
 
          fromFile.ShouldThrow<ArgumentException>();
       }
