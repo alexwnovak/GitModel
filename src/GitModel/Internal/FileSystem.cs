@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace GitModel
+namespace GitModel.Internal
 {
    internal class FileSystem : IFileSystem
    {

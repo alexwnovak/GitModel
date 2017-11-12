@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using GitModel.Internal;
 
 namespace GitModel
 {
-   public class CommitFileReader
+   public class CommitFileReader : ICommitFileReader
    {
       private readonly IFileSystem _fileSystem;
 

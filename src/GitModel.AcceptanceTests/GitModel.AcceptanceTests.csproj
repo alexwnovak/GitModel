@@ -79,7 +79,7 @@
     </Compile>
     <Compile Include="ModelObjects\CommitDocumentObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Steps\CommitSharedSteps.cs" />
+    <Compile Include="Steps\CommitSteps.cs" />
     <Compile Include="Transformations\StringTransformations.cs" />
   </ItemGroup>
   <ItemGroup>
