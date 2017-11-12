@@ -24,5 +24,12 @@
          get;
          set;
       }
+
+      /// <summary>
+      /// Initializes a new instance of the CommitDocument class.
+      /// </summary>
+      public CommitDocument()
+      {
+      }
    }
 }
