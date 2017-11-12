@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>GitModel</id>
+    <version>0.9</version>
+    <authors>Alex Novak</authors>
+    <owners>alexwnovak</owners>
+    <licenseUrl>https://github.com/alexwnovak/GitModel/blob/master/LICENSE</licenseUrl>
+    <iconUrl>https://github.com/alexwnovak/GitModel/raw/master/icon.png</iconUrl>
+    <projectUrl>https://github.com/alexwnovak/GitModel</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A standard model for reading and writing Git files</description>
+    <releaseNotes>Version 0.9
+* Initial release
+    </releaseNotes>
+    <copyright>Copyright © Alex Novak 2017. All rights reserved.</copyright>
+    <tags>nanobuilder builder automated unit tests</tags>
+  </metadata>
+  <files>
+    <file src="src\GitModel\bin\$configuration$\netstandard1.5\GitModel.dll" target="lib\netstandard1.5" />
+    <file src="src\GitModel\bin\$configuration$\netstandard1.5\GitModel.pdb" target="lib\netstandard1.5" />
+    <file src="src\GitModel\bin\$configuration$\netstandard1.5\GitModel.xml" target="lib\netstandard1.5" />
+  </files>
+</package>
