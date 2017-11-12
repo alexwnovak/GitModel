@@ -49,7 +49,7 @@ namespace GitModel
       }
 
       /// <summary>
-      /// Reads a Git commit file from disk.
+      /// Reads a Git commit file from disk and returns its details in a <seealso cref="CommitDocument"/> instance.
       /// </summary>
       /// <param name="filePath">The full path to the Git commit file. This must not be null or empty.</param>
       /// <returns>A <seealso cref="CommitDocument"/> object that contains the commit details.</returns>
