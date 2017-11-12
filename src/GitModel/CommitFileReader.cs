@@ -14,6 +14,9 @@ namespace GitModel
    {
       private readonly IFileSystem _fileSystem;
 
+      /// <summary>
+      /// Initializes a new instance of the CommitFileReader class.
+      /// </summary>
       public CommitFileReader() : this( new FileSystem() )
       {
       }
