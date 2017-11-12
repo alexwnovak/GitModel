@@ -11,12 +11,14 @@ namespace GitModel.UnitTests
 {
    public class CommitFileReaderTests
    {
-      [Fact]
-      public void FromFile_FilePathIsNull_ThrowsArgumentException()
+      [Theory]
+      [InlineData( null )]
+      [InlineData( "" )]
+      public void FromFile_FilePathIsInvalid_ThrowsArgumentException( string filePath )
       {
          var commitFileReader = new CommitFileReader( Mock.Of<IFileSystem>() );
 
-         Action fromFile = () => commitFileReader.FromFile( null );
+         Action fromFile = () => commitFileReader.FromFile( filePath );
 
          fromFile.ShouldThrow<ArgumentException>();
       }
