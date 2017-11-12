@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace GitModel
 {
-   public class CommitFileWriter
+   public class CommitFileWriter : ICommitFileWriter
    {
       private readonly IFileSystem _fileSystem;
 
