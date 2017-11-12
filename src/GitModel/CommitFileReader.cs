@@ -31,8 +31,21 @@ namespace GitModel
       private static IEnumerable<string> OmitComments( IEnumerable<string> lines ) =>
          lines.Where( l => !l.StartsWith( "#" ) );
 
-      private IEnumerable<string> GetCommitFileLines( string filePath ) =>
-         OmitComments( _fileSystem.ReadAllLines( filePath ) );
+      private IEnumerable<string> GetCommitFileLines( string filePath )
+      {
+         string[] allLines;
+
+         try
+         {
+            allLines = _fileSystem.ReadAllLines( filePath );
+         }
+         catch ( Exception ex )
+         {
+            throw new GitModelException( $"Unable to read commit file: {filePath}. Refer to the inner exception for details.", ex );
+         }
+
+         return OmitComments( allLines );
+      }
 
       public CommitDocument FromFile( string filePath )
       {

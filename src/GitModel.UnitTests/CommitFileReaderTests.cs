@@ -294,5 +294,28 @@ namespace GitModel.UnitTests
 
          commitDocument.Body.Should().BeEquivalentTo( expectedLines );
       }
+
+      [Fact]
+      public void FromFile_DiskAccessFailsWithException_ThrowsGitModelException()
+      {
+         const string filePath = "COMMIT_EDITMSG";
+         var innerException = new FileNotFoundException();
+
+         // Arrange
+
+         var fileSystemMock = new Mock<IFileSystem>();
+         fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( true );
+         fileSystemMock.Setup( fs => fs.ReadAllLines( filePath ) ).Throws( innerException );
+
+         // Act
+
+         var commitFileReader = new CommitFileReader( fileSystemMock.Object );
+
+         Action fromFile = () => commitFileReader.FromFile( filePath );
+
+         // Assert
+
+         fromFile.ShouldThrow<GitModelException>().Which.InnerException.Should().Be( innerException );
+      }
    }
 }
