@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace GitModel
 {
-   public class CommitFileReader
+   public class CommitFileReader : ICommitFileReader
    {
       private readonly IFileSystem _fileSystem;
 
