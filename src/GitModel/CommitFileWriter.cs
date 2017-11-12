@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GitModel.Internal;
 
 namespace GitModel
 {

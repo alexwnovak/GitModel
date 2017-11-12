@@ -3,6 +3,8 @@ using System.IO;
 using Xunit;
 using FluentAssertions;
 using Moq;
+using GitModel;
+using GitModel.Internal;
 using GitModel.UnitTests.Helpers;
 
 namespace GitModel.UnitTests

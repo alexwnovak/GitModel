@@ -4,6 +4,7 @@ using FluentAssertions;
 using Xunit;
 using Moq;
 using GitModel;
+using GitModel.Internal;
 
 namespace GitModel.UnitTests
 {

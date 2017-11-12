@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GitModel
+namespace GitModel.Internal
 {
    internal interface IFileSystem
    {
