@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GitModel.Internal;
 
 namespace GitModel
@@ -18,6 +19,11 @@ namespace GitModel
 
       public void ToFile( string filePath, CommitDocument document )
       {
+         if ( string.IsNullOrEmpty( filePath ) )
+         {
+            throw new ArgumentException( "File path must not be null or empty", nameof( filePath ) );
+         }
+
          var lines = new List<string>
          {
             document.Subject

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using Xunit;
@@ -10,6 +11,18 @@ namespace GitModel.UnitTests
 {
    public class CommitFileWriterTests
    {
+      [Theory]
+      [InlineData( null )]
+      [InlineData( "" )]
+      public void ToFile_FilePathIsInvalid_ThrowsArgumentException( string filePath )
+      {
+         var commitFileWriter = new CommitFileWriter( Mock.Of<IFileSystem>() );
+
+         Action fromFile = () => commitFileWriter.ToFile( filePath, new CommitDocument() );
+
+         fromFile.ShouldThrow<ArgumentException>();
+      }
+
       [Fact]
       public void ToFile_CommitDocumentHasSubject_SubjectIsWritten()
       {
