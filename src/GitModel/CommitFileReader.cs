@@ -61,11 +61,6 @@ namespace GitModel
             throw new ArgumentException( "File path must not be null or empty", nameof( filePath ) );
          }
 
-         if ( !_fileSystem.FileExists( filePath ) )
-         {
-            throw new FileNotFoundException( $"Couldn't find file: {filePath}" );
-         }
-
          var lines = GetCommitFileLines( filePath );
 
          string subject = string.Empty;

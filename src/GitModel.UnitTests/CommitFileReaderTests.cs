@@ -34,21 +34,6 @@ namespace GitModel.UnitTests
       }
 
       [Fact]
-      public void FromFile_FilePathDoesNotExist_ThrowsFileNotFoundException()
-      {
-         const string filePath = "DoesntMatter";
-
-         var fileSystemMock = new Mock<IFileSystem>();
-         fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( false );
-
-         var commitFileReader = new CommitFileReader( fileSystemMock.Object );
-
-         Action fromFile = () => commitFileReader.FromFile( filePath );
-
-         fromFile.ShouldThrow<FileNotFoundException>();
-      }
-
-      [Fact]
       public void FromFile_CommitFileHasSubject_PopulatesSubject()
       {
          const string filePath = "DoesntMatter";
@@ -296,7 +281,7 @@ namespace GitModel.UnitTests
       }
 
       [Fact]
-      public void FromFile_DiskAccessFailsWithException_ThrowsGitModelException()
+      public void FromFile_FilesDoesNotExist_ThrowsGitModelExceptionWithCorrectInnerException()
       {
          const string filePath = "COMMIT_EDITMSG";
          var innerException = new FileNotFoundException();
