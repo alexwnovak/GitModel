@@ -56,6 +56,25 @@ Task( "RunAcceptanceTests" )
 } );
 
 //===========================================================================
+// Create NuGet Package Task
+//===========================================================================
+
+Task( "CreatePackage" )
+   .IsDependentOn( "RunUnitTests" )
+   .Does( () =>
+{
+   CreateDirectory( "./artifacts" );
+   
+   var settings = new NuGetPackSettings
+   {   
+     OutputDirectory = "./artifacts",
+     ArgumentCustomization = args => args.Append( "-Prop Configuration=" + configuration )
+   };
+   
+   NuGetPack( "./GitModel.nuspec", settings );
+} );
+
+//===========================================================================
 // Default Task
 //===========================================================================
 
