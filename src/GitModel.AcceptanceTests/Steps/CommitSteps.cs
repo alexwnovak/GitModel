@@ -5,11 +5,11 @@ using GitModel.AcceptanceTests.ModelObjects;
 namespace GitModel.AcceptanceTests.Steps
 {
    [Binding]
-   public class CommitSharedSteps
+   public class CommitSteps
    {
       private readonly CommitDocumentObject _commitDocumentObject;
 
-      public CommitSharedSteps( CommitDocumentObject commitDocumentObject )
+      public CommitSteps( CommitDocumentObject commitDocumentObject )
       {
          _commitDocumentObject = commitDocumentObject;
       }
