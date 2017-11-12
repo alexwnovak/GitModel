@@ -210,6 +210,39 @@ namespace GitModel.UnitTests
       }
 
       [Fact]
+      public void FromFile_CommitFileHasTwoLineBodyWithNoLineBreaks_PopulatesBody()
+      {
+         const string filePath = "DoesntMatter";
+         const string bodyL1 = "BodyLine1";
+         const string bodyL2 = "BodyLine2";
+
+         var lines = new[]
+         {
+            "Subject",
+            bodyL1,
+            bodyL2
+         };
+
+         // Arrange
+
+         var fileSystemMock = new Mock<IFileSystem>();
+         fileSystemMock.Setup( fs => fs.FileExists( filePath ) ).Returns( true );
+         fileSystemMock.Setup( fs => fs.ReadAllLines( filePath ) ).Returns( lines );
+
+         // Act
+
+         var commitFileReader = new CommitFileReader( fileSystemMock.Object );
+
+         var commitDocument = commitFileReader.FromFile( filePath );
+
+         // Assert
+
+         var expectedLines = ArrayHelper.Create( bodyL1, bodyL2 );
+
+         commitDocument.Body.Should().BeEquivalentTo( expectedLines );
+      }
+
+      [Fact]
       public void FromFile_CommitFileHasTwoLineBodySeparatedByBlankLine_PopulatesBody()
       {
          const string filePath = "DoesntMatter";
