@@ -1,39 +1,26 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace GitModel.Internal
 {
    internal static class RebaseActionParser
    {
-      public static RebaseAction ToRebaseAction( string actionString )
+      private static readonly Dictionary<string, RebaseAction> _rebaseActionDictionary = new Dictionary<string, RebaseAction>
       {
-         actionString = actionString.ToLower();
+         ["pick"] = RebaseAction.Pick,
+         ["p"] = RebaseAction.Pick,
+         ["reword"] = RebaseAction.Reword,
+         ["r"] = RebaseAction.Reword,
+         ["edit"] = RebaseAction.Edit,
+         ["e"] = RebaseAction.Edit,
+         ["squash"] = RebaseAction.Squash,
+         ["s"] = RebaseAction.Squash,
+         ["fixup"] = RebaseAction.Fixup,
+         ["f"] = RebaseAction.Fixup,
+         ["exec"] = RebaseAction.Exec,
+         ["x"] = RebaseAction.Exec
+      };
 
-         if ( actionString == "pick" || actionString == "p" )
-         {
-            return RebaseAction.Pick;
-         }
-         if ( actionString == "reword" || actionString == "r" )
-         {
-            return RebaseAction.Reword;
-         }
-         if ( actionString == "edit" || actionString == "e" )
-         {
-            return RebaseAction.Edit;
-         }
-         if ( actionString == "squash" || actionString == "s" )
-         {
-            return RebaseAction.Squash;
-         }
-         if ( actionString == "fixup" || actionString == "f" )
-         {
-            return RebaseAction.Fixup;
-         }
-         if ( actionString == "exec" || actionString == "x" )
-         {
-            return RebaseAction.Exec;
-         }
-
-         throw new NotImplementedException();
-      }
+      public static RebaseAction ToRebaseAction( string actionString ) =>
+          _rebaseActionDictionary[actionString.ToLower()];
    }
 }
