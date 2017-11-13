@@ -28,6 +28,10 @@ namespace GitModel.Internal
          {
             return RebaseAction.Fixup;
          }
+         if ( actionString == "exec" || actionString == "x" )
+         {
+            return RebaseAction.Exec;
+         }
 
          throw new NotImplementedException();
       }

@@ -18,6 +18,8 @@ namespace GitModel.UnitTests.Internal
       [InlineData( "s", RebaseAction.Squash )]
       [InlineData( "fixup", RebaseAction.Fixup )]
       [InlineData( "f", RebaseAction.Fixup )]
+      [InlineData( "exec", RebaseAction.Exec )]
+      [InlineData( "x", RebaseAction.Exec )]
       public void ToRebaseAction_ActionStringIsValid_ConvertsToRebaseAction( string actionString, RebaseAction expectedAction )
       {
          RebaseActionParser.ToRebaseAction( actionString ).Should().Be( expectedAction );
