@@ -10,6 +10,8 @@ namespace GitModel.UnitTests.Internal
       [Theory]
       [InlineData( "pick", RebaseAction.Pick )]
       [InlineData( "p", RebaseAction.Pick )]
+      [InlineData( "reword", RebaseAction.Reword )]
+      [InlineData( "r", RebaseAction.Reword )]
       public void ToRebaseAction_ActionStringIsValid_ConvertsToRebaseAction( string actionString, RebaseAction expectedAction )
       {
          RebaseActionParser.ToRebaseAction( actionString ).Should().Be( expectedAction );

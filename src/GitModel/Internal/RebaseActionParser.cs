@@ -12,6 +12,11 @@ namespace GitModel.Internal
          {
             return RebaseAction.Pick;
          }
+         if ( actionString == "reword" || actionString == "r" )
+         {
+            return RebaseAction.Reword;
+         }
+
          throw new NotImplementedException();
       }
    }
