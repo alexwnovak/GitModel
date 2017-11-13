@@ -14,6 +14,8 @@ namespace GitModel.UnitTests.Internal
       [InlineData( "r", RebaseAction.Reword )]
       [InlineData( "edit", RebaseAction.Edit )]
       [InlineData( "e", RebaseAction.Edit )]
+      [InlineData( "squash", RebaseAction.Squash )]
+      [InlineData( "s", RebaseAction.Squash )]
       public void ToRebaseAction_ActionStringIsValid_ConvertsToRebaseAction( string actionString, RebaseAction expectedAction )
       {
          RebaseActionParser.ToRebaseAction( actionString ).Should().Be( expectedAction );

@@ -20,6 +20,10 @@ namespace GitModel.Internal
          {
             return RebaseAction.Edit;
          }
+         if ( actionString == "squash" || actionString == "s" )
+         {
+            return RebaseAction.Squash;
+         }
 
          throw new NotImplementedException();
       }
