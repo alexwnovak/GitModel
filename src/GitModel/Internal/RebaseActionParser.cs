@@ -16,6 +16,10 @@ namespace GitModel.Internal
          {
             return RebaseAction.Reword;
          }
+         if ( actionString == "edit" || actionString == "e" )
+         {
+            return RebaseAction.Edit;
+         }
 
          throw new NotImplementedException();
       }
