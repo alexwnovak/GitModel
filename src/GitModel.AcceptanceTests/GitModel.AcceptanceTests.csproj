@@ -79,7 +79,13 @@
     </Compile>
     <Compile Include="ModelObjects\CommitDocumentObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RebaseFileReaderFeature.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RebaseFileReaderFeature.feature</DependentUpon>
+    </Compile>
     <Compile Include="Steps\CommitSteps.cs" />
+    <Compile Include="Steps\RebaseSteps.cs" />
     <Compile Include="Transformations\StringTransformations.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +106,10 @@
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="RebaseFileReaderFeature.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RebaseFileReaderFeature.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
