@@ -73,6 +73,7 @@
     <Compile Include="CommitFileWriterTests.cs" />
     <Compile Include="Helpers\ArrayHelper.cs" />
     <Compile Include="Helpers\ObjectExtensions.cs" />
+    <Compile Include="Internal\RebaseActionParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RebaseFileReaderTests.cs" />
   </ItemGroup>
