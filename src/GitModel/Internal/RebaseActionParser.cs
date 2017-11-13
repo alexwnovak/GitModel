@@ -24,6 +24,10 @@ namespace GitModel.Internal
          {
             return RebaseAction.Squash;
          }
+         if ( actionString == "fixup" || actionString == "f" )
+         {
+            return RebaseAction.Fixup;
+         }
 
          throw new NotImplementedException();
       }
