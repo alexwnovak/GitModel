@@ -37,7 +37,7 @@ namespace GitModel
 
             var rebaseItem = new RebaseItem
             {
-               Action = (RebaseAction) Enum.Parse( typeof( RebaseAction ), tokens[0], true ),
+               Action = RebaseActionParser.ToRebaseAction( tokens[0] ),
                CommitHash = tokens[1],
                Subject = tokens[2]
             };
