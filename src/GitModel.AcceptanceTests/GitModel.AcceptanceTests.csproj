@@ -78,6 +78,7 @@
       <DependentUpon>CommitFileWriterFeature.feature</DependentUpon>
     </Compile>
     <Compile Include="ModelObjects\CommitDocumentObject.cs" />
+    <Compile Include="ModelObjects\RebaseDocumentObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RebaseFileReaderFeature.feature.cs">
       <AutoGen>True</AutoGen>
