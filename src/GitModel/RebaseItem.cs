@@ -31,5 +31,7 @@
          get;
          set;
       }
+
+      public override string ToString() => $"{Action.ToString().ToLower()} {CommitHash} {Subject}";
    }
 }
