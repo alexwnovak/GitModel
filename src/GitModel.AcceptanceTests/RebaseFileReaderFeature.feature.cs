@@ -84,19 +84,19 @@ namespace GitModel.AcceptanceTests
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "RebaseAction",
+                        "Action",
                         "CommitHash",
-                        "Description"});
+                        "Subject"});
             table1.AddRow(new string[] {
                         "Pick",
                         "5bf115d",
                         "This is a commit"});
             table1.AddRow(new string[] {
-                        "Pick",
+                        "Squash",
                         "2525a53",
                         "Another commit"});
             table1.AddRow(new string[] {
-                        "Pick",
+                        "Squash",
                         "f799a4f",
                         "A third commit"});
 #line 8
@@ -107,19 +107,19 @@ this.ScenarioSetup(scenarioInfo);
    testRunner.When("I read the rebase file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "RebaseAction",
+                        "Action",
                         "CommitHash",
-                        "Description"});
+                        "Subject"});
             table2.AddRow(new string[] {
                         "Pick",
                         "5bf115d",
                         "This is a commit"});
             table2.AddRow(new string[] {
-                        "Pick",
+                        "Squash",
                         "2525a53",
                         "Another commit"});
             table2.AddRow(new string[] {
-                        "Pick",
+                        "Squash",
                         "f799a4f",
                         "A third commit"});
 #line 15

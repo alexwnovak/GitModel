@@ -6,15 +6,15 @@
 @Acceptance
 Scenario: Reading rebase file
 	Given the rebase has the following:
-   | RebaseAction | CommitHash | Description                  |
+   | Action | CommitHash | Subject                  |
    | Pick         | 5bf115d    | This is a commit             |
-   | Pick         | 2525a53    | Another commit               |
-   | Pick         | f799a4f    | A third commit               |
+   | Squash         | 2525a53    | Another commit               |
+   | Squash       | f799a4f    | A third commit               |
 	And the rebase file exists
    When I read the rebase file
    Then the rebase document should contain:
-   | RebaseAction | CommitHash | Description                  |
+   | Action | CommitHash | Subject                  |
    | Pick         | 5bf115d    | This is a commit             |
-   | Pick         | 2525a53    | Another commit               |
-   | Pick         | f799a4f    | A third commit               |
+   | Squash         | 2525a53    | Another commit               |
+   | Squash         | f799a4f    | A third commit               |
 	
