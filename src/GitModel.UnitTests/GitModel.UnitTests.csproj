@@ -76,6 +76,7 @@
     <Compile Include="Internal\RebaseActionParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RebaseFileReaderTests.cs" />
+    <Compile Include="Helpers\RebaseItemHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GitModel\GitModel.csproj">
