@@ -3,6 +3,7 @@ using Xunit;
 using FluentAssertions;
 using Moq;
 using GitModel.Internal;
+using GitModel.UnitTests.Helpers;
 
 namespace GitModel.UnitTests
 {
@@ -24,15 +25,12 @@ namespace GitModel.UnitTests
       public void FromFile_RebaseFileHasOneItem_ReadsItem()
       {
          const string filePath = "RebaseFile.txt";
-         var lines = new[]
-         {
-            "pick d768f10 WIP"
-         };
+         string rebaseLine = RebaseItemHelper.Create( RebaseAction.Pick, "d768f10", "WIP" );
 
          // Arrange
 
          var fileSystemMock = new Mock<IFileSystem>();
-         fileSystemMock.Setup( fs => fs.ReadAllLines( filePath ) ).Returns( lines );
+         fileSystemMock.Setup( fs => fs.ReadAllLines( filePath ) ).Returns( rebaseLine.AsArray() );
 
          // Act
 
