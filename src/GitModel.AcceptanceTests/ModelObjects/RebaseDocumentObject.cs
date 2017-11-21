@@ -5,7 +5,7 @@ namespace GitModel.AcceptanceTests.ModelObjects
    public class RebaseDocumentObject
    {
       private readonly string _tempFileName = Path.GetTempFileName();
-      private readonly RebaseDocument _rebaseDocument = new RebaseDocument();
+      private RebaseDocument _rebaseDocument = new RebaseDocument();
 
       public RebaseItem[] Items
       {
@@ -15,6 +15,9 @@ namespace GitModel.AcceptanceTests.ModelObjects
 
       public void Load()
       {
+         var rebaseFileReader = new RebaseFileReader();
+
+         _rebaseDocument = rebaseFileReader.FromFile( _tempFileName );
       }
 
       public void Save()
