@@ -7,7 +7,7 @@ namespace GitModel
    /// <summary>
    /// 
    /// </summary>
-   public class RebaseFileReader
+   public class RebaseFileReader : IRebaseFileReader
    {
       private readonly IFileSystem _fileSystem;
 
