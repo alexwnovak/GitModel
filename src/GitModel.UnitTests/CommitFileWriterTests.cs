@@ -18,9 +18,9 @@ namespace GitModel.UnitTests
       {
          var commitFileWriter = new CommitFileWriter( Mock.Of<IFileSystem>() );
 
-         Action fromFile = () => commitFileWriter.ToFile( filePath, new CommitDocument() );
+         Action toFile = () => commitFileWriter.ToFile( filePath, new CommitDocument() );
 
-         fromFile.ShouldThrow<ArgumentException>();
+         toFile.ShouldThrow<ArgumentException>();
       }
 
       [Fact]
@@ -28,9 +28,9 @@ namespace GitModel.UnitTests
       {
          var commitFileWriter = new CommitFileWriter( Mock.Of<IFileSystem>() );
 
-         Action fromFile = () => commitFileWriter.ToFile( "NotNullString", null );
+         Action toFile = () => commitFileWriter.ToFile( "NotNullString", null );
 
-         fromFile.ShouldThrow<ArgumentException>();
+         toFile.ShouldThrow<ArgumentException>();
       }
 
       [Fact]
