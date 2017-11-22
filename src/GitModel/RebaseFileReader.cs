@@ -40,13 +40,18 @@ namespace GitModel
 
          foreach ( string line in allLines )
          {
-            var tokens = line.Split( ' ' );
+            int firstSpace = line.IndexOf( ' ' );
+            int secondSpace = line.IndexOf( ' ', firstSpace + 1 );
+
+            string firstToken = line.Substring( 0, firstSpace );
+            string secondToken = line.Substring( firstSpace + 1, secondSpace - firstSpace - 1 );
+            string thirdToken = line.Substring( secondSpace + 1 );
 
             var rebaseItem = new RebaseItem
             {
-               Action = RebaseActionParser.ToRebaseAction( tokens[0] ),
-               CommitHash = tokens[1],
-               Subject = tokens[2]
+               Action = RebaseActionParser.ToRebaseAction( firstToken ),
+               CommitHash = secondToken,
+               Subject = thirdToken
             };
 
             rebaseItems.Add( rebaseItem );
