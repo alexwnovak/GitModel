@@ -8,7 +8,7 @@ namespace GitModel
    /// <summary>
    /// 
    /// </summary>
-   public class RebaseFileWriter
+   public class RebaseFileWriter : IRebaseFileWriter
    {
       private readonly IFileSystem _fileSystem;
 
