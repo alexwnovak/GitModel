@@ -32,6 +32,10 @@
          set;
       }
 
+      /// <summary>
+      /// Returns a string that represents the current object properties.
+      /// </summary>
+      /// <returns>A string that contains the current property values.</returns>
       public override string ToString() => $"{Action.ToString().ToLower()} {CommitHash} {Subject}";
    }
 }
