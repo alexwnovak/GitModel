@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using GitModel.Internal;
 
 namespace GitModel
@@ -27,7 +28,9 @@ namespace GitModel
             throw new ArgumentException( "Rebase document must not be null", nameof( document ) );
          }
 
-         throw new System.NotImplementedException();
+         var allLines = document.Items.Select( i => i.ToString() );
+
+         _fileSystem.WriteAllLines( filePath, allLines );
       }
    }
 }

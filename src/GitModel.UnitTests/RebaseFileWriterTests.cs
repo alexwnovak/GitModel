@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Xunit;
+using Moq;
 using FluentAssertions;
 using GitModel.Internal;
-using Moq;
-using Xunit;
+using GitModel.UnitTests.Helpers;
 
 namespace GitModel.UnitTests
 {
@@ -28,6 +31,33 @@ namespace GitModel.UnitTests
          Action toFile = () => rebaseFileWriter.ToFile( "NotNullString", null );
 
          toFile.ShouldThrow<ArgumentException>();
+      }
+
+      [Fact]
+      public void ToFile_RebaseDocumentHasOneCompleteItem_ItemIsWritten()
+      {
+         const string filePath = "COMMIT_EDITMSG";
+
+         var fileSystemMock = new Mock<IFileSystem>();
+
+         var rebaseItem = new RebaseItem
+         {
+            Action = RebaseAction.Edit,
+            CommitHash = "Hash",
+            Subject = "Subject"
+         };
+
+         var rebaseDocument = new RebaseDocument
+         {
+            Items = rebaseItem.AsArray()
+         };
+
+         var rebaseFileWriter = new RebaseFileWriter( fileSystemMock.Object );
+
+         rebaseFileWriter.ToFile( filePath, rebaseDocument );
+
+         fileSystemMock.Verify( fs => fs.WriteAllLines( filePath, It.Is<IEnumerable<string>>( c =>
+            c.Contains( rebaseItem.ToString() ) ) ), Times.Once() );
       }
    }
 }
