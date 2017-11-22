@@ -15,7 +15,17 @@ namespace GitModel.UnitTests
       {
          var rebaseFileWriter = new RebaseFileWriter( Mock.Of<IFileSystem>() );
 
-         Action toFile = () => rebaseFileWriter.ToFile( filePath );
+         Action toFile = () => rebaseFileWriter.ToFile( filePath, null );
+
+         toFile.ShouldThrow<ArgumentException>();
+      }
+
+      [Fact]
+      public void ToFile_RebaseDocumentIsNull_ThrowsArgumentException()
+      {
+         var rebaseFileWriter = new RebaseFileWriter( Mock.Of<IFileSystem>() );
+
+         Action toFile = () => rebaseFileWriter.ToFile( "NotNullString", null );
 
          toFile.ShouldThrow<ArgumentException>();
       }
