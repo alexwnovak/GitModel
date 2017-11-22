@@ -14,7 +14,7 @@
 * Initial release
     </releaseNotes>
     <copyright>Copyright © Alex Novak 2017. All rights reserved.</copyright>
-    <tags>nanobuilder builder automated unit tests</tags>
+    <tags>gitmodel git</tags>
   </metadata>
   <files>
     <file src="src\GitModel\bin\$configuration$\netstandard1.5\GitModel.dll" target="lib\netstandard1.5" />
