@@ -40,7 +40,7 @@ namespace GitModel.AcceptanceTests.Steps
       {
          var expectedItems = table.CreateSet<RebaseItem>();
 
-         _rebaseDocument.Items.Should().BeEquivalentTo( expectedItems );
+         _rebaseDocument.Items.ShouldBeEquivalentTo( expectedItems );
       }
    }
 }
