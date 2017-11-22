@@ -59,5 +59,26 @@ namespace GitModel.UnitTests
          fileSystemMock.Verify( fs => fs.WriteAllLines( filePath, It.Is<IEnumerable<string>>( c =>
             c.Contains( rebaseItem.ToString() ) ) ), Times.Once() );
       }
+
+      [Fact]
+      public void ToFile_DiskAccessFails_ThrowsGitModelExceptionWithCorrectInnerException()
+      {
+         var innerException = new UnauthorizedAccessException();
+
+         var fileSystemMock = new Mock<IFileSystem>();
+         fileSystemMock.Setup( fs => fs.WriteAllLines( It.IsAny<string>(), It.IsAny<IEnumerable<string>>() ) )
+            .Throws( innerException );
+
+         var rebaseDocument = new RebaseDocument
+         {
+            Items = new RebaseItem[0]
+         };
+
+         var rebaseFileWriter = new RebaseFileWriter( fileSystemMock.Object );
+
+         Action toFile = () => rebaseFileWriter.ToFile( "Valid File Path", rebaseDocument );
+
+         toFile.ShouldThrow<GitModelException>().Which.InnerException.Should().Be( innerException );
+      }
    }
 }

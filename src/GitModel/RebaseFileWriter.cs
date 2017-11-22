@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GitModel.Internal;
 
@@ -30,7 +31,19 @@ namespace GitModel
 
          var allLines = document.Items.Select( i => i.ToString() );
 
-         _fileSystem.WriteAllLines( filePath, allLines );
+         WriteAllLines( filePath, allLines );
+      }
+
+      private void WriteAllLines( string filePath, IEnumerable<string> lines )
+      {
+         try
+         {
+            _fileSystem.WriteAllLines( filePath, lines );
+         }
+         catch ( Exception ex )
+         {
+            throw new GitModelException( $"Unable to write rebase file to: {filePath}. Refer to the inner exception for details.", ex );
+         }
       }
    }
 }
