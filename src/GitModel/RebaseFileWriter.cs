@@ -12,6 +12,13 @@ namespace GitModel
    {
       private readonly IFileSystem _fileSystem;
 
+      /// <summary>
+      /// 
+      /// </summary>
+      public RebaseFileWriter() : this( new FileSystem() )
+      {
+      }
+
       internal RebaseFileWriter( IFileSystem fileSystem )
       {
          _fileSystem = fileSystem;

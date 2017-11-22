@@ -22,6 +22,9 @@ namespace GitModel.AcceptanceTests.ModelObjects
 
       public void Save()
       {
+         var rebaseFileWriter = new RebaseFileWriter();
+
+         rebaseFileWriter.ToFile( _tempFileName, _rebaseDocument );
       }
    }
 }
