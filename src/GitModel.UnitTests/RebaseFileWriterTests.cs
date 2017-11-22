@@ -34,6 +34,16 @@ namespace GitModel.UnitTests
       }
 
       [Fact]
+      public void ToFile_RebaseDocumentHasNullItems_ThrowsArgumentException()
+      {
+         var rebaseFileWriter = new RebaseFileWriter( Mock.Of<IFileSystem>() );
+
+         Action toFile = () => rebaseFileWriter.ToFile( "NotNullString", new RebaseDocument() );
+
+         toFile.ShouldThrow<ArgumentException>();
+      }
+
+      [Fact]
       public void ToFile_RebaseDocumentHasOneCompleteItem_ItemIsWritten()
       {
          const string filePath = "COMMIT_EDITMSG";
