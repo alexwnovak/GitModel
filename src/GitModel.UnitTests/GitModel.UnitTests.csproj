@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommitDocumentTests.cs" />
     <Compile Include="CommitFileReaderTests.cs" />
     <Compile Include="CommitFileWriterTests.cs" />
     <Compile Include="Helpers\ArrayHelper.cs" />

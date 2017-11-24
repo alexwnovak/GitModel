@@ -60,5 +60,14 @@
       {
          Body = body;
       }
+
+      /// <summary>
+      /// Clears the document's data, resetting it to empty values.
+      /// </summary>
+      public void Clear()
+      {
+         Subject = string.Empty;
+         Body = new string[0];
+      }
    }
 }
