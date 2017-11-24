@@ -6,6 +6,13 @@
    public class CommitDocument
    {
       /// <summary>
+      /// A pre-made CommitDocument instance that has an empty subject and body.
+      /// This can be used with the <seealso cref="CommitFileWriter"/> to write an
+      /// empty commit file, signaling to Git that the commit should be aborted.
+      /// </summary>
+      public static readonly CommitDocument Empty = new CommitDocument( string.Empty, new string[0] );
+
+      /// <summary>
       /// The commit's first line. This describes what the commit is accomplishing, and is often
       /// constrained to 50 or 72 characters.
       /// </summary>
