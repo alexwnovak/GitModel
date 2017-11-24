@@ -1,6 +1,5 @@
 ﻿using Xunit;
 using FluentAssertions;
-using GitModel;
 using GitModel.Internal;
 
 namespace GitModel.UnitTests.Internal
