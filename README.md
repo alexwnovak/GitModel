@@ -4,9 +4,12 @@
 
 GitModel is a .NET Standard library that provides a model for reading and writing Git files. A common use case is writing your own Git Editor.
 
-## Commits
+## Features
 
-GitModel provides the `CommitDocument` object that represents a commit file. This is used with the `CommitFileReader` and `CommitFileWriter`.
+GitModel provides functionality to read and write Git files for:
+
+- ​Commits (`CommitFileReader` and `CommitFileWriter` that work with a `CommitDocument`)
+- Interactive Rebases (`RebaseFileReader` and `RebaseFileWriter` that work with a `RebaseDocument`)
 
 ## Attributions
 
